@@ -11,13 +11,9 @@ import joykeeper.towerdefense.EnemyTypes.Enemy;
 import java.util.ArrayList;
 
 
-
-
-
 public class Tower implements Updateable, Drawable {
     private Vector position;
     private float SHOOTING_RATE;
-    int BULLET_DAMAGE;
     private float shootCD = 0;
     private Enemy target;
     private ArrayList<Enemy> allEnemies;
@@ -25,6 +21,7 @@ public class Tower implements Updateable, Drawable {
     private EnemySelector enemySelector;
     private int cost;
     private Color skin;
+    private TowerWeapon bulletController;
 
     public Tower(
             Vector position,
@@ -37,13 +34,16 @@ public class Tower implements Updateable, Drawable {
             int cost
     ){
         this.position = position;
-        this.BULLET_DAMAGE = damage;
         this.SHOOTING_RATE = shootingRate;
         this.shootingRadius = shootingRadius;
         this.allEnemies = enemies;
         this.enemySelector = enemySelector;
         this.cost = cost;
         this.skin = skin;
+        this.bulletController = new TowerWeapon(this.position, damage);
+
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
     }
 
     @Override
@@ -77,20 +77,12 @@ public class Tower implements Updateable, Drawable {
     public void update(float deltaTime) {
         target = enemySelector.select(this, getVisibleEnemies());
         if (this.shootCD <= 0 && target != null){
-            this.shoot();
+            this.bulletController.shoot(target);
             this.shootCD = this.SHOOTING_RATE;
         }
         this.shootCD -= deltaTime;
     }
 
-    private void shoot(){
-        Bullet bullet = new Bullet(new Vector(this.position.x*TowerDefenseGame.instance.CELL_SIZE+20,
-                this.position.y*TowerDefenseGame.instance.CELL_SIZE+20),
-                10, this.BULLET_DAMAGE, Color.RED, target);
-        TowerDefenseGame.instance.bullets.add(bullet);
-        TowerDefenseGame.instance.addDrawable(bullet);
-        TowerDefenseGame.instance.addUpdatable(bullet);
-    }
 
     private ArrayList<Enemy> getVisibleEnemies(){
         ArrayList<Enemy> visibleEnemies = new ArrayList<>();

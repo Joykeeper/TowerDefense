@@ -22,7 +22,7 @@ public class MoneyLabel implements DrawableUI{
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch) {
+    public void drawUI(SpriteBatch spriteBatch) {
         font.setColor(Color.BLACK);
         font.draw(spriteBatch, "Money: " + player.getMoney(), 700, 440);
     }

@@ -2,6 +2,7 @@ package joykeeper.towerdefense.TileTypes;
 
 import com.badlogic.gdx.graphics.Color;
 import joykeeper.towerdefense.EnemyTypes.EnemyType;
+import joykeeper.towerdefense.Scenes.GameScene;
 import joykeeper.towerdefense.TowerDefenseGame;
 import joykeeper.towerdefense.Vector;
 
@@ -15,6 +16,6 @@ public class StartTile extends Tile {
 
     @Override
     public void onTileClick() {
-        TowerDefenseGame.instance.enemyController.spawnEnemy(EnemyType.BASIC);
+        GameScene.instance.enemyController.spawnEnemy(EnemyType.BASIC);
     }
 }

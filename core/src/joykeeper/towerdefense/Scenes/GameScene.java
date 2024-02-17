@@ -4,57 +4,77 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector3;
 import joykeeper.towerdefense.*;
+import joykeeper.towerdefense.EnemySelectors.ClosestEnemySelector;
+import joykeeper.towerdefense.EnemySelectors.FirstEnemySelector;
 import joykeeper.towerdefense.EnemyTypes.*;
+import joykeeper.towerdefense.TowerTypes.*;
+import joykeeper.towerdefense.UI.DrawableUI;
 import joykeeper.towerdefense.UI.UIController;
 
 import java.util.ArrayList;
 
-public class GameScene extends Scene implements Updateable {
+public class GameScene extends Scene {
+    public static GameScene instance;
     Field field;
+    private String map;
     Player player;
+    Wave[] waves;
+    public EnemyController enemyController;
+    public PanelHolder panelHolder = new PanelHolder();
+    public UIController uiController;
 
-    WaveController waveController;
-    PanelHolder panelHolder = new PanelHolder();
-    UIController uiController;
+    public ArrayList<Bullet> bullets = new ArrayList<>();
 
-    ArrayList<Enemy> enemies = new ArrayList<>();
-    int lastEnemyId = 0;
+
     public GameScene (String map, Wave[] waves, Player player){
-        this.field = new Field(map,16, 12, 40, TowerDefenseGame.instance.mousePosition);
-        this.waveController = new WaveController(waves);
+        instance = this;
+
+        this.map = map;
+        this.waves = waves;
         this.player = player;
+    }
+    public GameScene (String map, Player player){
+        this(map, null, player);
+    }
+    public void start(){
+        this.field = new Field(map,16, 12, 40, TowerDefenseGame.instance.mousePosition);
+        if(waves != null){
+            this.enemyController = new EnemyController(this.waves, field.getRoad());
+        } else {
+            this.enemyController = new EnemyController(field.getRoad());
+        }
         this.uiController = new UIController(player);
     }
 
-    @Override
-    public void update(float deltaTime) {
-
-    }
-
-    public void spawnEnemy(EnemyType enemyType){
-        ArrayList<Vector> roadList = field.getRoad();
-        Vector[] road = new Vector[roadList.size()];
-
-        for (int i = 0; i < road.length; i++) {
-            road[i] = roadList.get(i);
-        }
-
-        Enemy enemy;
-
-        switch (enemyType){
+    public Tower spawnTower(int x, int y, TowerType towerType){
+        Tower tower;
+        switch (towerType){
             case FAST:
-                enemy = new FastEnemy(++lastEnemyId, road);
+                tower = new FastTower(new Vector(x, y), this.enemyController.enemies, new FirstEnemySelector());
                 break;
-            case TANK:
-                enemy = new TankEnemy(++lastEnemyId, road);
+            case SNIPER:
+                tower = new SniperTower(new Vector(x, y), this.enemyController.enemies, new FirstEnemySelector());
                 break;
             default:
-                enemy = new BasicEnemy(++lastEnemyId, road);
+                tower = new BasicTower(new Vector(x, y), this.enemyController.enemies, new ClosestEnemySelector());
         }
 
-        enemies.add(enemy);
-        TowerDefenseGame.instance.addUpdatable(enemy);
-        TowerDefenseGame.instance.addDrawable(enemy);
+        if (player.getMoney() - tower.getCost() < 0){
+            return null;
+        }
+
+        player.spendMoney(tower.getCost());
+
+        return tower;
+    }
+
+
+    private void addToListDestroyedObjects(){
+        for (int i = 0; i < this.bullets.size(); i++) {
+            if(bullets.get(i).toDestroy){
+                addObjectToRemove(bullets.get(i));
+            }
+        }
     }
 
 }

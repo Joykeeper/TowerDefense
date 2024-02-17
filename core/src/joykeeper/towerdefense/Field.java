@@ -36,23 +36,26 @@ public class Field implements Drawable, Updateable{
                             "8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 ";
 
 
-    public Field(int width, int height, int cellSize, Vector3 mousePos){
-        this.width = width;
-        this.height = height;
-        this.cellSize = cellSize;
 
-        fieldMap = formAMap(this.fieldString);
-
-        this.mousePos = mousePos;
-    }
     public Field(String fieldString, int width, int height, int cellSize, Vector3 mousePos){
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
 
-        this.fieldMap = formAMap(fieldString);
+        if (fieldString == null){
+            this.fieldMap = formAMap(this.fieldString);
+        } else {
+            this.fieldMap = formAMap(fieldString);
+        }
 
         this.mousePos = mousePos;
+
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
+    }
+
+    public Field(int width, int height, int cellSize, Vector3 mousePos){
+        this(null, width, height, cellSize, mousePos);
     }
 
     @Override

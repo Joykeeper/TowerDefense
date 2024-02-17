@@ -8,6 +8,11 @@ import joykeeper.towerdefense.Updateable;
 
 public class AdditionalPanel implements Drawable, Updateable {
     boolean destroyed;
+
+    public AdditionalPanel(){
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
+    }
     public boolean isDestroyed() {
         return destroyed;
     }

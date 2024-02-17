@@ -9,11 +9,9 @@ public class PanelHolder implements Updateable{
         clearHoldingPanel();
 
         this.holdingPanel = panel;
-        TowerDefenseGame.instance.addDrawable(panel);
-        TowerDefenseGame.instance.addUpdatable(panel);
     }
     public void clearHoldingPanel(){
-        TowerDefenseGame.instance.addObjectToRemove(this.holdingPanel);
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.holdingPanel);
 
         this.holdingPanel = null;
     }

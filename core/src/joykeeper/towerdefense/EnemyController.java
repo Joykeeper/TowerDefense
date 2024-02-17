@@ -5,7 +5,7 @@ import joykeeper.towerdefense.EnemyTypes.*;
 import java.util.ArrayList;
 
 public class EnemyController implements Updateable{
-    ArrayList<Enemy> enemies;
+    public ArrayList<Enemy> enemies;
     WaveController waveController;
     int lastEnemyId = 0;
     ArrayList<Vector> road;
@@ -13,13 +13,13 @@ public class EnemyController implements Updateable{
         this.enemies = new ArrayList<>();
         this.road = road;
         this.waveController = new WaveController(waves);
-        TowerDefenseGame.instance.addUpdatable(this.waveController);
     }
     public EnemyController(ArrayList<Vector> road){
         this.enemies = new ArrayList<>();
         this.road = road;
         this.waveController = new WaveController();
-        TowerDefenseGame.instance.addUpdatable(this.waveController);
+
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
     }
 
     @Override
@@ -27,11 +27,11 @@ public class EnemyController implements Updateable{
         int removedEnemies = 0;
         for (int i = 0; i < this.enemies.size() - removedEnemies; i++) {
             if(this.enemies.get(i).isDead()){
-                TowerDefenseGame.instance.addObjectToRemove(this.enemies.get(i));
+                TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.enemies.get(i));
                 this.enemies.remove(this.enemies.get(i));
                 removedEnemies++;
             } else if(enemies.get(i).hasReachedEnd()){
-                TowerDefenseGame.instance.addObjectToRemove(this.enemies.get(i));
+                TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.enemies.get(i));
                 this.enemies.remove(this.enemies.get(i));
                 removedEnemies++;
             }
@@ -39,7 +39,7 @@ public class EnemyController implements Updateable{
 
         for (int i = 0; i < this.waveController.waves.length; i++) {
             if(this.waveController.waves[i].isFinished()){
-                TowerDefenseGame.instance.addObjectToRemove(this.waveController.waves[i]);
+                TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.waveController.waves[i]);
             }
         }
     }
@@ -65,8 +65,6 @@ public class EnemyController implements Updateable{
         }
 
         this.enemies.add(enemy);
-        TowerDefenseGame.instance.addUpdatable(enemy);
-        TowerDefenseGame.instance.addDrawable(enemy);
     }
 
 }

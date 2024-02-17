@@ -14,7 +14,7 @@ public class HealthLabel implements DrawableUI{
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch) {
+    public void drawUI(SpriteBatch spriteBatch) {
         font.setColor(Color.BLACK);
         font.draw(spriteBatch, "Health: " + player.getHealthPoints(), 700, 420);
     }

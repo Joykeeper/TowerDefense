@@ -2,6 +2,7 @@ package joykeeper.towerdefense;
 
 
 import joykeeper.towerdefense.EnemyTypes.EnemyType;
+import joykeeper.towerdefense.Scenes.GameScene;
 
 public class Wave implements Updateable{
     EnemyType[] enemies;
@@ -14,6 +15,9 @@ public class Wave implements Updateable{
         this.enemyIndToSpawn = 0;
         this.ENEMY_SPAWN_RATE = enemySpawnRate;
     }
+    public void start(){
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+    }
 
     @Override
     public void update(float deltaTime) {
@@ -23,7 +27,7 @@ public class Wave implements Updateable{
         }
 
         if (this.timeToNextSpawn <= 0){
-            TowerDefenseGame.instance.enemyController.spawnEnemy(enemies[enemyIndToSpawn++]);
+            GameScene.instance.enemyController.spawnEnemy(enemies[enemyIndToSpawn++]);
             this.timeToNextSpawn = this.ENEMY_SPAWN_RATE;
         }
 

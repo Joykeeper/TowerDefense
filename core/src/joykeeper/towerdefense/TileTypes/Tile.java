@@ -11,6 +11,8 @@ public abstract class Tile implements Drawable {
     protected Color skin;
     public Tile(Vector position){
         this.position = position;
+
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
     }
     abstract public void onTileClick();
     public void draw(ShapeRenderer shapeRenderer) {

@@ -33,6 +33,9 @@ public class Enemy implements Updateable, Drawable {
         for (Vector v : road) {
             System.out.println(v.x + " " + v.y);
         }
+
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
     }
 
     @Override
@@ -45,7 +48,6 @@ public class Enemy implements Updateable, Drawable {
 
     @Override
     public void update(float deltaTime) {
-        //checkPos();
         goToPos(road[desiredTileInd], deltaTime);
     }
     public int getId(){return this.id;}

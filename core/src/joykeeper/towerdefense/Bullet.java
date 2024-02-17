@@ -19,6 +19,9 @@ public class Bullet implements Updateable, Drawable{
         this.skin = color;
         this.damage = damage;
         this.entityTarget = entityTarget;
+
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
     }
 
     @Override

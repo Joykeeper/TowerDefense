@@ -17,6 +17,7 @@ public class WaveController implements Updateable{
         for (int i = 0; i < this.waves.length; i++) {
             this.waves[i] = new Wave(new EnemyType[]{EnemyType.BASIC, EnemyType.FAST, EnemyType.TANK}, this.ENEMY_SPAWN_RATE);
         }
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
     }
 
     public WaveController(Wave[] waves){
@@ -31,7 +32,7 @@ public class WaveController implements Updateable{
         }
 
         if (this.timeToNextWave <= 0){
-            TowerDefenseGame.instance.addUpdatable(waves[currentWave++]);
+            waves[currentWave++].start();
             this.timeToNextWave = this.TIME_BETWEEN_WAVES;
         }
 

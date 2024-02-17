@@ -4,7 +4,6 @@ public class Player {
     private int money;
     private int healthPoints;
     public Player(int money, int healthPoints){
-
         this.money = money;
         this.healthPoints = healthPoints;
     }
