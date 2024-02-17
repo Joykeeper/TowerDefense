@@ -63,11 +63,6 @@ public class TowerDefenseGame extends Game {
 		sceneManager = new SceneManager();
 		sceneManager.setScene(new MenuScene());
 
-		/*sceneManager.setScene(
-				new GameScene(
-						fieldString, new Player(500, 10)
-				)
-		);*/
 	}
 
 	@Override

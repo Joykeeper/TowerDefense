@@ -36,6 +36,9 @@ public class GameScene extends Scene {
     public GameScene (String map, Player player){
         this(map, null, player);
     }
+    public GameScene (Player player){
+        this(null, null, player);
+    }
     public void start(){
         this.field = new Field(map,16, 12, 40, TowerDefenseGame.instance.mousePosition);
         if(waves != null){
@@ -66,15 +69,6 @@ public class GameScene extends Scene {
         player.spendMoney(tower.getCost());
 
         return tower;
-    }
-
-
-    private void addToListDestroyedObjects(){
-        for (int i = 0; i < this.bullets.size(); i++) {
-            if(bullets.get(i).toDestroy){
-                addObjectToRemove(bullets.get(i));
-            }
-        }
     }
 
 }

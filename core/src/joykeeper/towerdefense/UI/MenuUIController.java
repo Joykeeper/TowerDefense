@@ -7,6 +7,7 @@ import joykeeper.towerdefense.Commands.ChangeSceneCommand;
 import joykeeper.towerdefense.Drawable;
 import joykeeper.towerdefense.Player;
 import joykeeper.towerdefense.Scenes.GameScene;
+import joykeeper.towerdefense.Scenes.LevelCreationScene;
 import joykeeper.towerdefense.Scenes.MenuScene;
 import joykeeper.towerdefense.Scenes.Scene;
 import joykeeper.towerdefense.TowerDefenseGame;
@@ -20,24 +21,10 @@ public class MenuUIController implements Drawable {
         Button chooseMapButton = new Button("Choose map", new Vector(210, 220), new Vector(150, 150));
         Button createMapButton = new Button("Create map", new Vector(590, 220), new Vector(150, 150));
 
-
-        String fieldString =
-                "8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 " +
-                        "8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 " +
-                        "8 8 8 8 8 8 8 Sd 8 8 8 8 0 8 8 8 " +
-                        "8 8 8 8 8 8 0 1d 0 8 8 8 8 8 8 8 " +
-                        "8 8 8 8 8 8 0 1d 0 8 0 8 8 8 8 8 " +
-                        "8 8 8 0 8 8 0 1d 0 8 8 F 1l 8 8 8 " +
-                        "8 8 8 8 8 8 0 1d 0 1r 1r 1r 1u 8 8 8 " +
-                        "8 8 8 8 8 8 0 1d 0 1u 8 8 8 8 8 8 " +
-                        "8 8 8 8 8 8 0 1d 0 1u 8 8 8 8 8 8 " +
-                        "8 8 0 8 8 8 0 1r 1r 1u 8 8 8 8 8 8 " +
-                        "8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 " +
-                        "8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 ";
         chooseMapButton.setCommand(new ChangeSceneCommand(new GameScene(
-                fieldString, new Player(500, 10)
+                new Player(500, 10)
         )));
-        createMapButton.setCommand(new ChangeSceneCommand(new MenuScene()));
+        createMapButton.setCommand(new ChangeSceneCommand(new LevelCreationScene()));
 
         uiElements.add(chooseMapButton);
         uiElements.add(createMapButton);

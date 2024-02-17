@@ -1,9 +1,11 @@
 package joykeeper.towerdefense.Scenes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import joykeeper.towerdefense.Drawable;
+import joykeeper.towerdefense.TowerDefenseGame;
 import joykeeper.towerdefense.UI.DrawableUI;
 import joykeeper.towerdefense.Updateable;
 
@@ -26,6 +28,11 @@ public abstract class Scene implements Updateable, Drawable, DrawableUI {
 
         for (Object o : this.objectsToRemove) {
             this.removeObject(o);
+        }
+        this.objectsToRemove.clear();
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            TowerDefenseGame.instance.sceneManager.setScene(new MenuScene());
         }
     }
 

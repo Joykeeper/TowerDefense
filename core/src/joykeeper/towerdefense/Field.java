@@ -45,6 +45,7 @@ public class Field implements Drawable, Updateable{
         if (fieldString == null){
             this.fieldMap = formAMap(this.fieldString);
         } else {
+            this.fieldString = fieldString;
             this.fieldMap = formAMap(fieldString);
         }
 
@@ -168,5 +169,8 @@ public class Field implements Drawable, Updateable{
         }
 
         return road;
+    }
+    public String getFieldString(){
+        return this.fieldString;
     }
 }
