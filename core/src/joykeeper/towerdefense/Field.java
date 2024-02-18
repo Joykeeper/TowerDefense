@@ -61,26 +61,13 @@ public class Field implements Drawable, Updateable{
 
     @Override
     public void draw(ShapeRenderer shapeRenderer) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                shapeRenderer.end();
-
-                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-
-
-                for (Tile t : fieldMap.values()) {
-                    t.draw(shapeRenderer);
-                }
-
-                shapeRenderer.setColor(Color.WHITE);
-                shapeRenderer.rect(selectedTile.x*cellSize, selectedTile.y*cellSize, cellSize, cellSize);
-
-                shapeRenderer.end();
-
-                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            }
+        for (Tile t : fieldMap.values()) {
+            t.draw(shapeRenderer);
         }
+
+
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect(selectedTile.x*cellSize, selectedTile.y*cellSize, cellSize, cellSize);
     }
 
     @Override

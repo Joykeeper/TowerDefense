@@ -23,6 +23,7 @@ public class WaveController implements Updateable{
     public WaveController(Wave[] waves){
         this.currentWave = 0;
         this.waves = waves;
+        TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
     }
 
     @Override

@@ -15,6 +15,10 @@ public class VoidTile extends Tile implements Drawable {
         super(position);
         this.skin = Color.GRAY;
     }
+    public VoidTile(Vector position, Vector size){
+        super(position, size);
+        this.skin = Color.GRAY;
+    }
 
     @Override
     public void onTileClick() {

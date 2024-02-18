@@ -1,8 +1,12 @@
 package joykeeper.towerdefense.Commands;
 
+import com.badlogic.gdx.Gdx;
 import joykeeper.towerdefense.DrawField;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.*;
 
 public class LoadMapCommand implements Command{
     DrawField drawField;
@@ -11,8 +15,27 @@ public class LoadMapCommand implements Command{
     }
     @Override
     public void execute() {
+
+        // load file check
+
+        JFileChooser jFileChooser = new JFileChooser(Gdx.files.getLocalStoragePath()+ "/levels");
+        int returnVal = jFileChooser.showSaveDialog(null);
+        if (!(returnVal == JFileChooser.APPROVE_OPTION)){
+            System.out.println("File load cancelled");
+            return;
+        }
+        String fileToLoad = jFileChooser.getSelectedFile().getName();
+
+        Pattern p = Pattern.compile("\\d+\\.lvl");
+        Matcher m = p.matcher(fileToLoad);
+        if(!m.matches()){
+            System.out.println("Wrong file");
+            return;
+        }
+
+        // loading level
         try {
-            FileInputStream fileIn = new FileInputStream("levels/1.lvl");
+            FileInputStream fileIn = new FileInputStream("levels/" + fileToLoad);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             String map = (String) in.readObject();
             this.drawField.setFieldMap(map);
@@ -26,6 +49,5 @@ public class LoadMapCommand implements Command{
             c.printStackTrace();
             return;
         }
-        System.out.println("Opened directory to load from");
     }
 }

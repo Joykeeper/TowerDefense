@@ -61,30 +61,18 @@ public class DrawField implements Drawable, Updateable{
 
     @Override
     public void draw(ShapeRenderer shapeRenderer) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                shapeRenderer.end();
-
-                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-                for (Tile t : this.fieldMap.values()) {
-                    t.draw(shapeRenderer);
-                }
-
-                shapeRenderer.setColor(Color.WHITE);
-                shapeRenderer.rect(selectedTile.x*cellSize, selectedTile.y*cellSize, cellSize, cellSize);
-
-                shapeRenderer.end();
-
-                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            }
+        for (Tile t : this.fieldMap.values()) {
+            t.draw(shapeRenderer);
         }
+
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect(selectedTile.x*cellSize, selectedTile.y*cellSize, cellSize, cellSize);
     }
 
     @Override
     public void update(float deltaTime) {
         Vector chosenTile = new Vector((int)(mousePos.x/cellSize), (int)(mousePos.y/cellSize));
-        if (Gdx.input.justTouched()){
+        if (Gdx.input.isTouched()){
             for (Vector v: fieldMap.keySet()) {
                 if (v.x == chosenTile.x && v.y == chosenTile.y){
                     switch (this.drawingTile){

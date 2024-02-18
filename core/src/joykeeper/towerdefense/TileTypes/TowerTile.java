@@ -16,14 +16,21 @@ public class TowerTile extends Tile implements Drawable {
         super(position);
         this.skin = Color.YELLOW;
     }
+    public TowerTile(Vector position, Vector size){
+        super(position, size);
+        this.skin = Color.YELLOW;
+    }
 
     @Override
     public void onTileClick() {
-        GameScene.instance.panelHolder.setPanel(new TowerSelectionPanel(this));
+        GameScene gs = (GameScene) (TowerDefenseGame.instance.sceneManager.getCurrentScene());
+        gs.panelHolder.setPanel(new TowerSelectionPanel(this));
     }
     public void spawnTower(TowerType tt){
         if(this.tower == null) {
-            this.tower = GameScene.instance.spawnTower((int) this.position.x,(int) this.position.y, tt);
+            GameScene gs = (GameScene) (TowerDefenseGame.instance.sceneManager.getCurrentScene());
+
+            this.tower = gs.spawnTower((int) this.position.x,(int) this.position.y, tt);
         }
     }
 

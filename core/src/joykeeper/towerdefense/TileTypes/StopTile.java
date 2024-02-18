@@ -9,6 +9,11 @@ public class StopTile extends Tile {
         this.skin = Color.BLACK;
     }
 
+    public StopTile(Vector position ,Vector size){
+        super(position, size);
+        this.skin = Color.BLACK;
+    }
+
     @Override
     public void onTileClick() {
 

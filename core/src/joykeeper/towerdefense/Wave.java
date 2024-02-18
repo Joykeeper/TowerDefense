@@ -1,6 +1,7 @@
 package joykeeper.towerdefense;
 
 
+import com.badlogic.gdx.Game;
 import joykeeper.towerdefense.EnemyTypes.EnemyType;
 import joykeeper.towerdefense.Scenes.GameScene;
 
@@ -27,7 +28,8 @@ public class Wave implements Updateable{
         }
 
         if (this.timeToNextSpawn <= 0){
-            GameScene.instance.enemyController.spawnEnemy(enemies[enemyIndToSpawn++]);
+            GameScene gs = (GameScene)(TowerDefenseGame.instance.sceneManager.getCurrentScene());
+            gs.enemyController.spawnEnemy(enemies[enemyIndToSpawn++]);
             this.timeToNextSpawn = this.ENEMY_SPAWN_RATE;
         }
 

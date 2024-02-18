@@ -12,14 +12,17 @@ public class EnemyController implements Updateable{
     public EnemyController(Wave[] waves, ArrayList<Vector> road){
         this.enemies = new ArrayList<>();
         this.road = road;
-        this.waveController = new WaveController(waves);
-    }
-    public EnemyController(ArrayList<Vector> road){
-        this.enemies = new ArrayList<>();
-        this.road = road;
-        this.waveController = new WaveController();
+        if (waves == null){
+            this.waveController = new WaveController();
+        } else {
+            this.waveController = new WaveController(waves);
+        }
 
         TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
+
+    }
+    public EnemyController(ArrayList<Vector> road){
+        this(null, road);
     }
 
     @Override

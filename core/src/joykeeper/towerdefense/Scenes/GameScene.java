@@ -14,7 +14,6 @@ import joykeeper.towerdefense.UI.UIController;
 import java.util.ArrayList;
 
 public class GameScene extends Scene {
-    public static GameScene instance;
     Field field;
     private String map;
     Player player;
@@ -27,8 +26,6 @@ public class GameScene extends Scene {
 
 
     public GameScene (String map, Wave[] waves, Player player){
-        instance = this;
-
         this.map = map;
         this.waves = waves;
         this.player = player;
@@ -41,7 +38,7 @@ public class GameScene extends Scene {
     }
     public void start(){
         this.field = new Field(map,16, 12, 40, TowerDefenseGame.instance.mousePosition);
-        if(waves != null){
+        if(this.waves != null){
             this.enemyController = new EnemyController(this.waves, field.getRoad());
         } else {
             this.enemyController = new EnemyController(field.getRoad());

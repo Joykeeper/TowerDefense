@@ -12,6 +12,11 @@ public class RoadTile extends Tile {
         this.skin = Color.GREEN;
         this.directsTo = directsTo;
     }
+    public RoadTile(Vector position, Vector directsTo, Vector size){
+        super(position, size);
+        this.skin = Color.GREEN;
+        this.directsTo = directsTo;
+    }
 
     @Override
     public void onTileClick() {

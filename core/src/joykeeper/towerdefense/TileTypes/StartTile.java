@@ -9,6 +9,11 @@ import joykeeper.towerdefense.Vector;
 
 public class StartTile extends Tile {
     public Vector directsTo;
+    public StartTile(Vector position, Vector directsTo, Vector size){
+        super(position, size);
+        this.skin = Color.BLUE;
+        this.directsTo = directsTo;
+    }
     public StartTile(Vector position, Vector directsTo){
         super(position);
         this.skin = Color.BLUE;
@@ -17,7 +22,6 @@ public class StartTile extends Tile {
 
     @Override
     public void onTileClick() {
-        GameScene.instance.enemyController.spawnEnemy(EnemyType.BASIC);
     }
 
     public void draw(ShapeRenderer shapeRenderer) {
