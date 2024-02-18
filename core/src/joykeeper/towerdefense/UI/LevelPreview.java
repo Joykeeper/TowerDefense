@@ -37,8 +37,9 @@ public class LevelPreview implements Drawable, DrawableUI {
             FileInputStream fileIn = new FileInputStream("levels/" + levelName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             this.map = (String) in.readObject();
+            Player player = (Player) in.readObject();
             levelPhotoButton.setCommand(new ChangeSceneCommand(
-                    new GameScene(this.map, new Player(1000, 10))
+                    new GameScene(this.map, player)
             ));
             this.field = new PreviewField(new Vector(this.position.x-levelPhotoButton.size.x/2+11,
                     this.position.y-levelPhotoButton.size.y/2), this.map,16,12,8);

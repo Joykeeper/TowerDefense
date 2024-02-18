@@ -45,17 +45,17 @@ public class TowerSelectionPanel extends AdditionalPanel implements Drawable, Up
                     (mousePos.y - 300)*(mousePos.y - 300) <= TowerDefenseGame.instance.CELL_SIZE*
                     TowerDefenseGame.instance.CELL_SIZE)){
                 towerTile.spawnTower(TowerType.BASIC);
-                this.destroyed = true;
+                super.destroyed = true;
             } else if(((mousePos.x - 720)*(mousePos.x - 720) +
                     (mousePos.y - 200)*(mousePos.y - 200) <= TowerDefenseGame.instance.CELL_SIZE*
                     TowerDefenseGame.instance.CELL_SIZE)){
                 towerTile.spawnTower(TowerType.FAST);
-                this.destroyed = true;
+                super.destroyed = true;
             } else if(((mousePos.x - 720)*(mousePos.x - 720) +
                     (mousePos.y - 100)*(mousePos.y - 100) <= TowerDefenseGame.instance.CELL_SIZE*
                     TowerDefenseGame.instance.CELL_SIZE)){
                 towerTile.spawnTower(TowerType.SNIPER);
-                this.destroyed = true;
+                super.destroyed = true;
             }
         }
     }

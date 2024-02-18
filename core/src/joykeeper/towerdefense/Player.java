@@ -1,6 +1,8 @@
 package joykeeper.towerdefense;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private int money;
     private int healthPoints;
     public Player(int money, int healthPoints){
@@ -24,5 +26,12 @@ public class Player {
 
     public void spendMoney(int amount){
         this.money -= amount;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+    public void setHealthPoints(int hP){
+        this.healthPoints = hP;
     }
 }

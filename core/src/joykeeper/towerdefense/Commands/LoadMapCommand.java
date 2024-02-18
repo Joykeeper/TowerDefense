@@ -2,6 +2,9 @@ package joykeeper.towerdefense.Commands;
 
 import com.badlogic.gdx.Gdx;
 import joykeeper.towerdefense.DrawField;
+import joykeeper.towerdefense.Player;
+import joykeeper.towerdefense.Scenes.GameScene;
+import joykeeper.towerdefense.UI.PlayerStatsSettingSection;
 
 import java.io.*;
 import java.util.regex.Matcher;
@@ -10,8 +13,12 @@ import javax.swing.*;
 
 public class LoadMapCommand implements Command{
     DrawField drawField;
-    public LoadMapCommand(DrawField drawField){
+    Player player;
+    PlayerStatsSettingSection playerStatsSettingSection;
+    public LoadMapCommand(DrawField drawField, Player player, PlayerStatsSettingSection playerStatsSettingSection){
         this.drawField = drawField;
+        this.player = player;
+        this.playerStatsSettingSection = playerStatsSettingSection;
     }
     @Override
     public void execute() {
@@ -38,6 +45,8 @@ public class LoadMapCommand implements Command{
             FileInputStream fileIn = new FileInputStream("levels/" + fileToLoad);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             String map = (String) in.readObject();
+            this.player = (Player) in.readObject();
+            playerStatsSettingSection.updatePlayerStats(player);
             this.drawField.setFieldMap(map);
             in.close();
             fileIn.close();

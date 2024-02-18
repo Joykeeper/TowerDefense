@@ -6,15 +6,15 @@ import joykeeper.towerdefense.Drawable;
 import joykeeper.towerdefense.TowerDefenseGame;
 import joykeeper.towerdefense.Updateable;
 
-public class AdditionalPanel implements Drawable, Updateable {
-    boolean destroyed;
+public abstract class AdditionalPanel implements Drawable, Updateable {
+    boolean destroyed = false;
 
     public AdditionalPanel(){
         TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
         TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
     }
     public boolean isDestroyed() {
-        return destroyed;
+        return this.destroyed;
     }
 
     @Override
@@ -26,7 +26,5 @@ public class AdditionalPanel implements Drawable, Updateable {
     }
 
     @Override
-    public void update(float deltaTime) {
-
-    }
+    public abstract void update(float deltaTime);
 }

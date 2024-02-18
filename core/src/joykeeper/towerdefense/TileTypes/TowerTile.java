@@ -23,6 +23,9 @@ public class TowerTile extends Tile implements Drawable {
 
     @Override
     public void onTileClick() {
+        if (this.tower != null){
+            return;
+        }
         GameScene gs = (GameScene) (TowerDefenseGame.instance.sceneManager.getCurrentScene());
         gs.panelHolder.setPanel(new TowerSelectionPanel(this));
     }

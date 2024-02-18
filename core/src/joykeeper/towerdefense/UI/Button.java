@@ -95,4 +95,7 @@ public class Button implements Updateable, Drawable {
         }
         this.visible = state;
     }
+    public void setText(String text){
+        this.label.text = text;
+    }
 }

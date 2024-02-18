@@ -10,7 +10,7 @@ public class FirstEnemySelector implements EnemySelector {
         if(enemies.isEmpty()) return null;
         Enemy firstEnemy = enemies.get(0);
         for (Enemy e:enemies) {
-            if(firstEnemy.getId() > e.getId()){
+            if(firstEnemy.getCurrentRoadPercentage() < e.getCurrentRoadPercentage()){
                 firstEnemy = e;
             }
         }

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Enemy implements Updateable, Drawable {
-    private int id;
     private Vector[] road;
     private int desiredTileInd = 0;
     float healthPoints;
@@ -22,17 +21,13 @@ public class Enemy implements Updateable, Drawable {
     protected int moveSpeed;
     Color skin;
     public int reward;
-    public Enemy(int id, Vector[] road, int moveSpeed, float healthPoints, Color skin, int reward){
-        this.id = id;
+    public Enemy(Vector[] road, int moveSpeed, float healthPoints, Color skin, int reward, int waveNo){
         this.position = road[0];
         this.road = road;
         this.moveSpeed = moveSpeed;
         this.skin = skin;
-        this.reward = reward;
-        this.healthPoints = healthPoints;
-        for (Vector v : road) {
-            System.out.println(v.x + " " + v.y);
-        }
+        this.reward = reward + waveNo*1;
+        this.healthPoints = healthPoints*(1f+waveNo/10f);
 
         TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
         TowerDefenseGame.instance.sceneManager.getCurrentScene().addDrawable(this);
@@ -48,11 +43,11 @@ public class Enemy implements Updateable, Drawable {
 
     @Override
     public void update(float deltaTime) {
+        System.out.println(this.healthPoints);
         goToPos(road[desiredTileInd], deltaTime);
     }
-    public int getId(){return this.id;}
     public float getHealthPoints(){return this.healthPoints;}
-    public float getReward(){return this.reward;}
+    public int getReward(){return this.reward;}
     public Vector getPosition(){return this.position;}
     public void receiveDamage(float damage){
         this.healthPoints -= damage;
@@ -74,7 +69,6 @@ public class Enemy implements Updateable, Drawable {
         }
 
         this.position = this.position.sub(direction.mul(this.moveSpeed * deltaTime));
-        System.out.println(desiredTileInd);
     }
 
     public boolean isDead() {
@@ -83,5 +77,8 @@ public class Enemy implements Updateable, Drawable {
 
     public boolean hasReachedEnd() {
         return reachedEnd;
+    }
+    public float getCurrentRoadPercentage(){
+        return (float) this.desiredTileInd/ (float) this.road.length;
     }
 }

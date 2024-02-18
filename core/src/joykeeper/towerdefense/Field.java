@@ -87,7 +87,6 @@ public class Field implements Drawable, Updateable{
     private Map<Vector, Tile> formAMap(String map){
         Map<Vector, Tile> field = new HashMap<>();
         String[] mapArr = map.split(" ");
-        System.out.println(Arrays.toString(mapArr));
         int i = 0;
         for (int y = height-1; y >= 0; y--) {
             for (int x = 0; x < width; x++) {

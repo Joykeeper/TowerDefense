@@ -14,7 +14,7 @@ public class CurrentWaveLabel implements DrawableUI{
     @Override
     public void drawUI(SpriteBatch spriteBatch) {
         font.setColor(Color.BLACK);
-        font.draw(spriteBatch, "Wave: " + (waveController.getCurrentWave()) + " / " +
-                        waveController.getWaves().length, 700, 400);
+        font.draw(spriteBatch, "Wave: " + (waveController.getWaveCounter()) + " / " +
+                (waveController.amountOfWaves != -1? waveController.amountOfWaves: "inf."), 700, 400);
     }
 }

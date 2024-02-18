@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class EnemyController implements Updateable{
     public ArrayList<Enemy> enemies;
     public WaveController waveController;
-    int lastEnemyId = 0;
     ArrayList<Vector> road;
     Player player;
     public EnemyController(Wave[] waves, ArrayList<Vector> road, Player player){
@@ -33,8 +32,8 @@ public class EnemyController implements Updateable{
         for (int i = 0; i < this.enemies.size() - removedEnemies; i++) {
             if(this.enemies.get(i).isDead()){
                 TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.enemies.get(i));
+                player.receiveMoney(this.enemies.get(i).getReward());
                 this.enemies.remove(this.enemies.get(i));
-                player.receiveMoney(10);
                 removedEnemies++;
             } else if(enemies.get(i).hasReachedEnd()){
                 TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.enemies.get(i));
@@ -62,13 +61,13 @@ public class EnemyController implements Updateable{
 
         switch (enemyType){
             case FAST:
-                enemy = new FastEnemy(++lastEnemyId, roadArr);
+                enemy = new FastEnemy(roadArr, this.waveController.getWaveCounter());
                 break;
             case TANK:
-                enemy = new TankEnemy(++lastEnemyId, roadArr);
+                enemy = new TankEnemy(roadArr, this.waveController.getWaveCounter());
                 break;
             default:
-                enemy = new BasicEnemy(++lastEnemyId, roadArr);
+                enemy = new BasicEnemy(roadArr, this.waveController.getWaveCounter());
         }
 
         this.enemies.add(enemy);
