@@ -18,14 +18,13 @@ public class LevelSelectionScene extends Scene{
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 levelsNames.add(listOfFiles[i].getName());
-                System.out.println("File " + listOfFiles[i].getName());
             }
         }
     }
     @Override
     public void start() {
         for (int i = 0; i < levelsNames.size(); i++) {
-            new LevelPreview(new Vector(((i%5)*148)+100, 420-(i/5)*120), levelsNames.get(i));
+            new LevelPreview(new Vector(((i%4)*160)+175, 420-(i/4)*160), levelsNames.get(i));
         }
     }
 }

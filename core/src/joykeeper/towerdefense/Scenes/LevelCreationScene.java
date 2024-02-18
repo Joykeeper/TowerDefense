@@ -2,6 +2,7 @@ package joykeeper.towerdefense.Scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import joykeeper.towerdefense.*;
 import joykeeper.towerdefense.Commands.LoadMapCommand;
 import joykeeper.towerdefense.Commands.SaveMapCommand;
@@ -20,9 +21,9 @@ public class LevelCreationScene extends Scene{
 
     public void start(){
         this.field = new DrawField(16, 12, 40, TowerDefenseGame.instance.mousePosition);
-        this.saveButton = new Button("Save", new Vector(720, 150), new Vector(100, 50));
+        this.saveButton = new Button("Save", new Vector(680, 75), new Vector(50, 50), Color.GREEN);
         this.saveButton.setCommand(new SaveMapCommand(this.field));
-        this.loadButton = new Button("Load", new Vector(720, 75), new Vector(100, 50));
+        this.loadButton = new Button("Load", new Vector(760, 75), new Vector(50, 50));
         this.loadButton.setCommand(new LoadMapCommand(this.field));
         this.drawingTileSelectionSection = new DrawingTileSelectionSection(this.field);
     }

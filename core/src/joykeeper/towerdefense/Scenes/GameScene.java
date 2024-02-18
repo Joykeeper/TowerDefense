@@ -22,8 +22,6 @@ public class GameScene extends Scene {
     public PanelHolder panelHolder = new PanelHolder();
     public UIController uiController;
 
-    public ArrayList<Bullet> bullets = new ArrayList<>();
-
 
     public GameScene (String map, Wave[] waves, Player player){
         this.map = map;
@@ -39,11 +37,11 @@ public class GameScene extends Scene {
     public void start(){
         this.field = new Field(map,16, 12, 40, TowerDefenseGame.instance.mousePosition);
         if(this.waves != null){
-            this.enemyController = new EnemyController(this.waves, field.getRoad());
+            this.enemyController = new EnemyController(this.waves, field.getRoad(), player);
         } else {
-            this.enemyController = new EnemyController(field.getRoad());
+            this.enemyController = new EnemyController(field.getRoad(), player);
         }
-        this.uiController = new UIController(player);
+        this.uiController = new UIController(player, this.enemyController.waveController);
     }
 
     public Tower spawnTower(int x, int y, TowerType towerType){

@@ -76,30 +76,34 @@ public class DrawField implements Drawable, Updateable{
             for (Vector v: fieldMap.keySet()) {
                 if (v.x == chosenTile.x && v.y == chosenTile.y){
                     switch (this.drawingTile){
-                        case ROAD:
-                            if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
-                                this.fieldMap.put(v, new RoadTile(v, new Vector(0, -1)));
-                            } else if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
-                                this.fieldMap.put(v, new RoadTile(v, new Vector(1, 0)));
-                            }else if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)){
-                                this.fieldMap.put(v, new RoadTile(v, new Vector(0, 1)));
-                            }else if (Gdx.input.isKeyPressed(Input.Keys.NUM_4)){
-                                this.fieldMap.put(v, new RoadTile(v, new Vector(-1, 0)));
-                            }
+                        case ROAD_R:
+                            this.fieldMap.put(v, new RoadTile(v, new Vector(1, 0)));
                             break;
+                        case ROAD_L:
+                            this.fieldMap.put(v, new RoadTile(v, new Vector(-1, 0)));
+                            break;
+                        case ROAD_U:
+                            this.fieldMap.put(v, new RoadTile(v, new Vector(0, 1)));
+                            break;
+                        case ROAD_D:
+                            this.fieldMap.put(v, new RoadTile(v, new Vector(0, -1)));
+                            break;
+
+                        case START_R:
+                            this.fieldMap.put(v, new StartTile(v, new Vector(1, 0)));
+                            break;
+                        case START_L:
+                            this.fieldMap.put(v, new StartTile(v, new Vector(-1, 0)));
+                            break;
+                        case START_U:
+                            this.fieldMap.put(v, new StartTile(v, new Vector(0, 1)));
+                            break;
+                        case START_D:
+                            this.fieldMap.put(v, new StartTile(v, new Vector(0, -1)));
+                            break;
+
                         case VOID:
                             this.fieldMap.put(v, new VoidTile(v));
-                            break;
-                        case START:
-                            if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
-                                this.fieldMap.put(v, new StartTile(v, new Vector(0, -1)));
-                            } else if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
-                                this.fieldMap.put(v, new StartTile(v, new Vector(1, 0)));
-                            }else if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)){
-                                this.fieldMap.put(v, new StartTile(v, new Vector(0, 1)));
-                            }else if (Gdx.input.isKeyPressed(Input.Keys.NUM_4)){
-                                this.fieldMap.put(v, new StartTile(v, new Vector(-1, 0)));
-                            }
                             break;
                         case TOWER:
                             this.fieldMap.put(v, new TowerTile(v));

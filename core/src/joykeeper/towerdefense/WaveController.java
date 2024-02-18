@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class WaveController implements Updateable{
     int currentWave;
-    Wave[] waves;
+    public Wave[] waves;
     float ENEMY_SPAWN_RATE = 1f;
     float TIME_BETWEEN_WAVES = 6f;
     float timeToNextWave = 0;
@@ -38,5 +38,13 @@ public class WaveController implements Updateable{
         }
 
         timeToNextWave -= deltaTime;
+    }
+
+    public int getCurrentWave() {
+        return currentWave;
+    }
+
+    public Wave[] getWaves() {
+        return waves;
     }
 }

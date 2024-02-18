@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 public class EnemyController implements Updateable{
     public ArrayList<Enemy> enemies;
-    WaveController waveController;
+    public WaveController waveController;
     int lastEnemyId = 0;
     ArrayList<Vector> road;
-    public EnemyController(Wave[] waves, ArrayList<Vector> road){
+    Player player;
+    public EnemyController(Wave[] waves, ArrayList<Vector> road, Player player){
         this.enemies = new ArrayList<>();
         this.road = road;
+        this.player = player;
         if (waves == null){
             this.waveController = new WaveController();
         } else {
@@ -21,8 +23,8 @@ public class EnemyController implements Updateable{
         TowerDefenseGame.instance.sceneManager.getCurrentScene().addUpdatable(this);
 
     }
-    public EnemyController(ArrayList<Vector> road){
-        this(null, road);
+    public EnemyController(ArrayList<Vector> road, Player player){
+        this(null, road, player);
     }
 
     @Override
@@ -32,10 +34,12 @@ public class EnemyController implements Updateable{
             if(this.enemies.get(i).isDead()){
                 TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.enemies.get(i));
                 this.enemies.remove(this.enemies.get(i));
+                player.receiveMoney(10);
                 removedEnemies++;
             } else if(enemies.get(i).hasReachedEnd()){
                 TowerDefenseGame.instance.sceneManager.getCurrentScene().addObjectToRemove(this.enemies.get(i));
                 this.enemies.remove(this.enemies.get(i));
+                player.takeDamage(1);
                 removedEnemies++;
             }
         }

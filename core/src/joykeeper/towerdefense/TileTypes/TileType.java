@@ -5,5 +5,13 @@ public enum TileType {
     TOWER,
     START,
     ROAD,
-    STOP
+    STOP,
+    START_R,
+    START_L,
+    START_U,
+    START_D,
+    ROAD_R,
+    ROAD_L,
+    ROAD_U,
+    ROAD_D,
 }
