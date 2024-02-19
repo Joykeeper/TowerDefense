@@ -19,7 +19,7 @@ public class Tower implements Updateable, Drawable {
     private ArrayList<Enemy> allEnemies;
     private int shootingRadius;
     private EnemySelector enemySelector;
-    private int cost;
+    public int cost;
     private Color skin;
     private TowerWeapon bulletController;
 

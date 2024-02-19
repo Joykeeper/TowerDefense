@@ -44,23 +44,26 @@ public class GameScene extends Scene {
     }
 
     public Tower spawnTower(int x, int y, TowerType towerType){
-        Tower tower;
+        Tower tower = null;
+
         switch (towerType){
             case FAST:
-                tower = new FastTower(new Vector(x, y), this.enemyController.enemies, new FirstEnemySelector());
+                if (player.getMoney() - FastTower.COST >= 0){
+                    tower = new FastTower(new Vector(x, y), this.enemyController.enemies, new FirstEnemySelector());
+                }
                 break;
             case SNIPER:
-                tower = new SniperTower(new Vector(x, y), this.enemyController.enemies, new FirstEnemySelector());
+                if (player.getMoney() - SniperTower.COST >= 0) {
+                    tower = new SniperTower(new Vector(x, y), this.enemyController.enemies, new FirstEnemySelector());
+                }
                 break;
             default:
-                tower = new BasicTower(new Vector(x, y), this.enemyController.enemies, new ClosestEnemySelector());
+                if (player.getMoney() - BasicTower.COST >= 0) {
+                    tower = new BasicTower(new Vector(x, y), this.enemyController.enemies, new ClosestEnemySelector());
+                }
         }
 
-        if (player.getMoney() - tower.getCost() < 0){
-            return null;
-        }
-
-        player.spendMoney(tower.getCost());
+        if (tower != null) player.spendMoney(tower.getCost());
 
         return tower;
     }

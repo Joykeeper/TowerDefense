@@ -8,7 +8,8 @@ import joykeeper.towerdefense.Vector;
 import java.util.ArrayList;
 
 public class BasicTower extends Tower{
+    public static int COST = 10;
     public BasicTower(Vector position, ArrayList<Enemy> enemies, EnemySelector enemySelector) {
-        super(position, 3, 1f, 150,enemies, enemySelector, Color.LIME, 10);
+        super(position, 3, 1f, 150,enemies, enemySelector, Color.LIME, COST);
     }
 }
