@@ -1,9 +1,6 @@
 package joykeeper.towerdefense;
 
-import joykeeper.towerdefense.EnemyTypes.Enemy;
-import joykeeper.towerdefense.EnemyTypes.EnemyType;
-
-import java.util.ArrayList;
+import joykeeper.towerdefense.enemyTypes.EnemyType;
 
 public class WaveController implements Updateable{
     int currentWave;

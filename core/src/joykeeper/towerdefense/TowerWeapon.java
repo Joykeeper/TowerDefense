@@ -1,7 +1,7 @@
 package joykeeper.towerdefense;
 
 import com.badlogic.gdx.graphics.Color;
-import joykeeper.towerdefense.EnemyTypes.Enemy;
+import joykeeper.towerdefense.enemyTypes.Enemy;
 
 import java.util.ArrayList;
 

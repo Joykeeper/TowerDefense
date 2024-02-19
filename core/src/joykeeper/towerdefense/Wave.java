@@ -1,9 +1,8 @@
 package joykeeper.towerdefense;
 
 
-import com.badlogic.gdx.Game;
-import joykeeper.towerdefense.EnemyTypes.EnemyType;
-import joykeeper.towerdefense.Scenes.GameScene;
+import joykeeper.towerdefense.enemyTypes.EnemyType;
+import joykeeper.towerdefense.scenes.GameScene;
 
 public class Wave implements Updateable{
     EnemyType[] enemies;

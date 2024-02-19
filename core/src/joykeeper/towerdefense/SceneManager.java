@@ -1,7 +1,7 @@
 package joykeeper.towerdefense;
 
-import joykeeper.towerdefense.Scenes.MenuScene;
-import joykeeper.towerdefense.Scenes.Scene;
+import joykeeper.towerdefense.scenes.MenuScene;
+import joykeeper.towerdefense.scenes.Scene;
 
 public class SceneManager {
     Scene currentScene;

@@ -8,10 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import joykeeper.towerdefense.Scenes.GameScene;
-
-import joykeeper.towerdefense.Scenes.MenuScene;
-import joykeeper.towerdefense.UI.DrawableUI;
+import joykeeper.towerdefense.scenes.MenuScene;
+import joykeeper.towerdefense.ui.DrawableUI;
 
 import java.util.ArrayList;
 

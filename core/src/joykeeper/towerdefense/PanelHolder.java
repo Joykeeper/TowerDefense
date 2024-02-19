@@ -1,7 +1,6 @@
 package joykeeper.towerdefense;
 
-import joykeeper.towerdefense.AdditionalPanels.AdditionalPanel;
-import joykeeper.towerdefense.AdditionalPanels.TowerSelectionPanel;
+import joykeeper.towerdefense.additionalPanels.AdditionalPanel;
 
 public class PanelHolder implements Updateable{
     AdditionalPanel holdingPanel;

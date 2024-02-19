@@ -1,6 +1,6 @@
 package joykeeper.towerdefense;
 
-import joykeeper.towerdefense.EnemyTypes.*;
+import joykeeper.towerdefense.enemyTypes.*;
 
 import java.util.ArrayList;
 

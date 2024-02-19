@@ -2,7 +2,7 @@ package joykeeper.towerdefense;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import joykeeper.towerdefense.EnemyTypes.Enemy;
+import joykeeper.towerdefense.enemyTypes.Enemy;
 
 public class Bullet implements Updateable, Drawable{
     private Vector position;
