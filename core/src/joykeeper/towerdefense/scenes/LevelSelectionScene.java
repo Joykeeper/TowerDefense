@@ -14,7 +14,6 @@ public class LevelSelectionScene extends Scene{
 
         if (!folder.exists()) folder.mkdirs();;
 
-        System.out.println(folder.exists());
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
